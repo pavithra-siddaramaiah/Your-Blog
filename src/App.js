@@ -1,5 +1,8 @@
+import BlogDetails from "./components/BlogDetails";
+import Create from "./components/Create";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 function App() {
   // const title = 'Welcome to the new blog';
@@ -9,16 +12,24 @@ function App() {
   // we cannot pass the objects or boolean characters inside the curly bracess. everything else we can do
 
   return (
-   <div className="App">
-    <Navbar />
-    <div className="content">
-      <Home />
-      {/* <h1>{ title }</h1>
-      <p>Liked { likes } times</p>
-      <a href = {link}>Google site</a> */}
-
+    <Router>
+    <div className="App">
+      <Navbar />
+      <div className="content">
+        <Switch>
+          <Route exact path = "/">
+            <Home />
+          </Route>
+          <Route path = "/create">
+            <Create />
+          </Route>
+          <Route path = "/blogs/:id">
+            <BlogDetails />
+          </Route>
+        </Switch>
+      </div>
     </div>
-   </div>
+   </Router>
   );
 }
 
